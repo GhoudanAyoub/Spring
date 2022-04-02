@@ -1,14 +1,12 @@
 package spring.cours.springjpa2.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "project")
 public class project {
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int idProject;
     @Column(length = 100)
     private String description;

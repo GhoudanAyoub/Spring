@@ -1,21 +1,29 @@
 package spring.cours.springjpa2.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import spring.cours.springjpa2.model.Developpeur;
+import org.springframework.stereotype.Service;
 import spring.cours.springjpa2.model.project;
 import spring.cours.springjpa2.model.projectDev;
+import spring.cours.springjpa2.model.projectRes;
 import spring.cours.springjpa2.model.taches;
+import spring.cours.springjpa2.repository.ProjectDevRepository;
+import spring.cours.springjpa2.repository.ProjectResRepository;
 import spring.cours.springjpa2.repository.ProjetRepository;
 import spring.cours.springjpa2.repository.TacheRepository;
 
 import java.util.List;
 
+@Service
 public class ProjectSeviceImpl implements ProjectService{
 
     @Autowired
     ProjetRepository projetRepository;
     @Autowired
     TacheRepository tacheRepository;
+    @Autowired
+    ProjectDevRepository projectDevRepository;
+    @Autowired
+    ProjectResRepository projectResRepository;
 
     @Override
     public void addProject(project project) {
@@ -34,27 +42,53 @@ public class ProjectSeviceImpl implements ProjectService{
     }
 
     @Override
-    public void addTacheToProject(int idProject, taches idTache) {
-
+    public void addTacheToProject(int idProject, taches tache) {
+        projectDev p = getProjectDev(idProject);
+        tache.setProject(p);
+        tacheRepository.save(tache);
     }
 
     @Override
     public List<project> getProjectList() {
-        return null;
+        return projetRepository.findAll();
     }
 
     @Override
     public List<projectDev> getProjectDevList() {
-        return null;
+        return projectDevRepository.getProjectDevList();
+    }
+
+    @Override
+    public List<projectRes> getProjectResList() {
+        return projectResRepository.getProjectResList();
     }
 
     @Override
     public List<taches> getTacheList(int idProject) {
-        return projetRepository;
+        return tacheRepository.getTacheList(idProject);
+    }
+
+    @Override
+    public project getProject(int idProject) {
+        project p = projetRepository.findById(idProject).get();
+        projectDev projectDev = projectDevRepository.findById(idProject).get();
+        projectRes projectRes = projectResRepository.findById(idProject).get();
+        if (p!=null)
+            return p;
+        else if (projectDev!=null)
+            return projectDev;
+        else if(projectRes!=null)
+            return projectRes;
+        return null;
     }
 
     @Override
     public projectDev getProjectDev(int idProject) {
-        return null;
+        return projectDevRepository.getProjectDev(idProject);
+    }
+
+    @Override
+    public projectRes getProjectRes(int idProject) {
+        return projectResRepository.getProjectRes(idProject);
     }
 }

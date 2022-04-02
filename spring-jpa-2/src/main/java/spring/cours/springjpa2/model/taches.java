@@ -1,21 +1,38 @@
 package spring.cours.springjpa2.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "taches")
 public class taches {
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int idtache;
-    private int clientID;
+    private int developpeurID;
     @Column(length = 10)
     private String nom;
     @Column(length = 100)
     private String description;
+
+    @ManyToOne(targetEntity=project.class)
+    private project project;
+
+    public project getProject() {
+        return project;
+    }
+
+    public int getDeveloppeurID() {
+        return developpeurID;
+    }
+
+    public void setDeveloppeurID(int developpeurID) {
+        this.developpeurID = developpeurID;
+    }
+
+    public void setProject(project project) {
+        this.project = project;
+    }
 
     public int getIdtache() {
         return idtache;
@@ -23,14 +40,6 @@ public class taches {
 
     public void setIdtache(int idtache) {
         this.idtache = idtache;
-    }
-
-    public int getClientID() {
-        return clientID;
-    }
-
-    public void setClientID(int clientID) {
-        this.clientID = clientID;
     }
 
     public String getNom() {

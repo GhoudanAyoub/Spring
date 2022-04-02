@@ -1,24 +1,24 @@
 package spring.cours.springjpa2.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "developpeur")
-public class Developpeur {
+public class developpeur {
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int developpeurID;
-    @Column(length = 10)
+    @Column(length = 10,nullable = false)
     private String nom;
     @Column(length = 100)
     private String description;
     @Column(length = 50, unique = true)
     private String email;
 
-    private List<taches> tachesList;
+    @ManyToMany(targetEntity=taches.class)
+    private List<taches> tachesList = new ArrayList<>();
 
     public List<taches> getTachesList() {
         return tachesList;
