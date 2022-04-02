@@ -1,12 +1,9 @@
-package iir4.g5.cours.springjpa1.controller;
+package spring.cours.springjpa2.controller;
 
-
-import iir4.g5.cours.springjpa1.model.projet;
-import iir4.g5.cours.springjpa1.model.utilisateur;
-import iir4.g5.cours.springjpa1.repository.ProjetRepository;
-import iir4.g5.cours.springjpa1.repository.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import spring.cours.springjpa2.model.project;
+import spring.cours.springjpa2.repository.ProjetRepository;
 
 import java.util.List;
 
@@ -18,17 +15,17 @@ public class ProjetController {
     ProjetRepository projetRepository;
 
     @GetMapping
-    public List<projet> get(){
+    public List<project> get(){
         return projetRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public projet get(@PathVariable int id){
+    public project get(@PathVariable int id){
         return projetRepository.findById(id).get();
     }
 
     @PostMapping
-    public void ajouter(@RequestBody projet u){
+    public void ajouter(@RequestBody project u){
         projetRepository.save(u);
     }
 
@@ -38,10 +35,9 @@ public class ProjetController {
     }
 
     @PutMapping
-    public void modif(@RequestBody projet projet) {
-        projet u = projetRepository.findById(projet.getIdProjet()).get();
-        u.setNom(projet.getNom());
-        u.setDescription(projet.getDescription());
+    public void modif(@RequestBody project project) {
+        project u = projetRepository.findById(project.getIdProject()).get();
+        u.setDescription(project.getDescription());
     }
 
 }

@@ -1,4 +1,5 @@
-package iir4.g5.cours.springjpa1.model;
+package spring.cours.springjpa2.model;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,21 +7,30 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "projet")
-public class projet {
+@Table(name = "taches")
+public class taches {
     @Id
-    private int idProjet;
-    @Column(length = 10,unique = true)
+    private int idtache;
+    private int clientID;
+    @Column(length = 10)
     private String nom;
     @Column(length = 100)
     private String description;
 
-    public int getIdProjet() {
-        return idProjet;
+    public int getIdtache() {
+        return idtache;
     }
 
-    public void setIdProjet(int idProjet) {
-        this.idProjet = idProjet;
+    public void setIdtache(int idtache) {
+        this.idtache = idtache;
+    }
+
+    public int getClientID() {
+        return clientID;
+    }
+
+    public void setClientID(int clientID) {
+        this.clientID = clientID;
     }
 
     public String getNom() {

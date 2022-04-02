@@ -29,6 +29,10 @@ public class ContactController {
     public ResponseEntity<List<Contact>> findByTelephone(@RequestParam  String telephone){
         return new ResponseEntity<>(ContactRepository.findByTelephone(telephone), HttpStatus.OK);
     }
+    @GetMapping("/nom")
+    public ResponseEntity<List<Contact>> findByName(@RequestParam  String nom){
+        return new ResponseEntity<>(ContactRepository.findByName(nom), HttpStatus.OK);
+    }
 
     @PostMapping("/add")
     public Contact ajouter(@RequestBody Contact u){
