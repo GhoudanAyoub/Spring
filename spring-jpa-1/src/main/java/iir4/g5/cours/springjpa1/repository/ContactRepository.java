@@ -13,6 +13,10 @@ import java.util.List;
 public interface ContactRepository extends JpaRepository<Contact,Integer> {
     @Query("SELECT c FROM Contact c WHERE c.telephone like  %:telephone%")
     List<Contact> findByTelephone(@Param("telephone") String telephone);
+
+    @Query("SELECT c FROM Contact c WHERE c.telephone like  %:WhatEver% or  c.nom like  %:WhatEver%")
+    List<Contact> findByWhatEver(@Param("WhatEver") String WhatEver);
+
     @Query("SELECT c FROM Contact c WHERE c.nom like  %:nom%")
     List<Contact> findByName(@Param("nom") String telephonnome);
 }

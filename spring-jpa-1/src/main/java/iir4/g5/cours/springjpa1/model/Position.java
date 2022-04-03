@@ -13,7 +13,7 @@ public class Position {
     private double latitude;
     private double longitude;
     @Column(unique = true)
-    private Long imei;
+    private String imei;
     private String Date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
     public Position() {
@@ -52,11 +52,11 @@ public class Position {
         this.longitude = longitude;
     }
 
-    public Long getImei() {
+    public String getImei() {
         return imei;
     }
 
-    public void setImei(Long imei) {
+    public void setImei(String imei) {
         this.imei = imei;
     }
 }

@@ -33,6 +33,10 @@ public class ContactController {
     public ResponseEntity<List<Contact>> findByName(@RequestParam  String nom){
         return new ResponseEntity<>(ContactRepository.findByName(nom), HttpStatus.OK);
     }
+    @GetMapping("/WhatEver")
+    public ResponseEntity<List<Contact>> findByWhatEver(@RequestParam  String WhatEver){
+        return new ResponseEntity<>(ContactRepository.findByWhatEver(WhatEver), HttpStatus.OK);
+    }
 
     @PostMapping("/add")
     public Contact ajouter(@RequestBody Contact u){
