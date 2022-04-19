@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Les marques</title>
+</head>
+
+<body>
+<h1>Les marques</h1>
+<table>
+    <thead>
+    <tr>
+        <th>IdMarque</th>
+        <th>Libelle</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="m:${marque}">
+        <th th:text="${m.idMarque}">1d</th>
+        <td th:text="${m.Libelle}">Description</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+
+</html>
